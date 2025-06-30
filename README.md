@@ -40,9 +40,11 @@ This project is live on Render: [https://shortify-url.onrender.com](https://shor
 -   **Postman Example**:
     1.  Select `POST` method.
     2.  Set the URL to `https://shortify-url.onrender.com/api/shorten`.
-    3.  Go to the `Body` tab and select `raw` and `JSON`.
-    4.  Enter the JSON body as shown above.
-    5.  Click `Send`.
+    3.  Go to the `Headers` tab.
+    4.  Enter the JSON Headers as shown above.
+    5.  Go to the `Body` tab and select `raw` and `JSON`.
+    6.  Enter the JSON body as shown above.
+    7.  Click `Send`.
 
 -   **Response (Success - 201 Created)**:
     ```json
