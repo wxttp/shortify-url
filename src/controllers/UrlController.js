@@ -20,9 +20,17 @@ async function createShortUrl(req, res) {
 
     let shortUrl = "";
     let newUrl;
+    let invalidShortUrl = ['/', 'http://', 'https://'];
 
     if (req.body.shortUrl) {
       shortUrl = req.body.shortUrl;
+
+      if (invalidShortUrl.some((item) => shortUrl.includes(item))) {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid short URL'
+        });
+      }
 
       const isDuplicateUrl = await UrlSchema.findOne({ shortUrl });
 
