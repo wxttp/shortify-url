@@ -1,4 +1,4 @@
-import { UrlSchema } from '../models/urlModel.js';
+import { UrlSchema } from '../models/UrlModel.js';
 
 async function createShortUrl(req, res) {
   try {
