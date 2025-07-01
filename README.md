@@ -10,6 +10,7 @@ This project is live on Render: [https://shortify-url.onrender.com](https://shor
 
 -   **URL Shortening**: Generate short URLs from original URLs.
 -   **Custom URLs**: Option to specify a custom short URL (if not already in use).
+-   **Custom Expire URLs**: Option to specify a custom expire URL (if not in past).
 -   **Redirection**: Redirect from a short URL back to its original URL.
 -   **Error Handling**: Tell users when they encounter an error, such as an invalid URL or a duplicate short URL.
 
@@ -31,6 +32,11 @@ This project is live on Render: [https://shortify-url.onrender.com](https://shor
     {
       "originalUrl": "https://www.example.com/another/long/url",
       "shortUrl": "mycustomurl"
+    }
+    Or for a custom expire URL:
+    {
+      "originalUrl": "https://www.example.com/another/long/url",
+      "expiredAt": "2025-01-01"
     }
     ```
 -   **`curl` Example**:
@@ -54,7 +60,8 @@ This project is live on Render: [https://shortify-url.onrender.com](https://shor
         "_id": "65c7b1a2b3c4d5e6f7a8b9c0",
         "originalUrl": "https://www.example.com/very/long/url/to/shorten",
         "shortUrl": "randomstring",
-        "createdAt": "2024-02-10T12:00:00.000Z",
+        "expiredAt": "2025-01-07T12:00:00.000Z",
+        "createdAt": "2025-01-01T12:00:00.000Z",
         "__v": 0
       }
     }
