@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import shortenUrlApi from './api/shortenUrlApi.js';
 import getOriginalUrlRoutes from './routes/getOriginalUrlRoutes.js';
+import { cleanupExpiredUrls } from './middleware/checkExpiredAtMiddleware.js';
 
 // Configuration
 const app = express();
@@ -11,6 +12,7 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+app.use(cleanupExpiredUrls);
 
 // Routes
 app.use('/api/shorten', shortenUrlApi);
