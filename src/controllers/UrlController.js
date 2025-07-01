@@ -18,9 +18,10 @@ async function createShortUrl(req, res) {
       });
     }
 
-    let shortUrl = "";
+    let shortUrl = Math.random().toString(36).substring(2, 8);;
     let newUrl;
     let invalidShortUrl = ['/', 'http://', 'https://'];
+    let expiredAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7);
 
     if (req.body.shortUrl) {
       shortUrl = req.body.shortUrl;
@@ -42,20 +43,33 @@ async function createShortUrl(req, res) {
       }
 
       shortUrl = shortUrl.toLowerCase().replace(/ /g, '-')
-
-      newUrl = await UrlSchema.create({
-        originalUrl,
-        shortUrl,
-      });
-
-    } else {
-      shortUrl = Math.random().toString(36).substring(2, 8);
-
-      newUrl = await UrlSchema.create({
-        originalUrl,
-        shortUrl,
-      });
     }
+
+    if (req.body.expiredAt) {
+      const expiredDate = new Date(req.body.expiredAt);
+
+      if (isNaN(expiredDate.getTime())) {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid expired date format'
+        });
+      }
+
+      if (expiredDate.getTime() <= Date.now()) {
+        return res.status(400).json({
+          success: false,
+          error: 'Expired date must be in the future'
+        });
+      }
+
+      expiredAt = expiredDate;
+    }
+
+    newUrl = await UrlSchema.create({
+      originalUrl,
+      shortUrl,
+      expiredAt,
+    });
 
     return res.status(201).json({
       success: true,

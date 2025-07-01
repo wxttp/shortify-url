@@ -14,6 +14,10 @@ const urlSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  expiredAt: {
+    type: Date,
+    default: Date.now() + 1000 * 60 * 60 * 24 * 7
+  }
 });
 
 const UrlSchema = mongoose.model('url', urlSchema);
