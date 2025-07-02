@@ -83,11 +83,11 @@ This project is live on Render: [https://shortify-url.onrender.com](https://shor
 
 ### 2. Redirect with shorten URL
 
--   **Endpoint**: `/shorten/:shortUrl`
+-   **Endpoint**: `/:shortUrl`
 -   **Method**: `GET`
 -   **`curl` Example**:
     ```bash
-    curl -L https://shortify-url.onrender.com/shorten/randomstring
+    curl -L https://shortify-url.onrender.com/randomstring
     ```
     (Use `-L` to make `curl` follow the 302 redirect)
 -   **Response (Success - 302 Found)**:
