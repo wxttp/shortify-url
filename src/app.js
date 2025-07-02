@@ -16,11 +16,7 @@ app.use(cleanupExpiredUrls);
 
 // Routes
 app.use('/api/shorten', shortenUrlApi);
-app.use('/shorten/', getOriginalUrlRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Shortify-URL API is running!');
-});
+app.use('/', getOriginalUrlRoutes);
 
 // Server
 const PORT = process.env.PORT || 3000;
